@@ -14,9 +14,9 @@ class TrackerResource extends Resource
 {
     protected static ?string $model = Tracker::class;
 
+
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-
-
+    protected static ?string $navigationGroup = 'My Tracking';
     public static function form(Form $form): Form
     {
         return $form
