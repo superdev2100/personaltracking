@@ -2,13 +2,15 @@
 
 namespace App\Filament\Admin\Resources;
 
-use App\Filament\Admin\Resources\TrackerResource\Pages;
-use App\Models\Tracker;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use App\Models\Tracker;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
+use Filament\Tables\Grouping\Group;
+use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Admin\Resources\TrackerResource\Pages;
 
 class TrackerResource extends Resource
 {
@@ -70,10 +72,15 @@ class TrackerResource extends Resource
                 Tables\Columns\TextColumn::make('mainCategory.name')->searchable(),
                 Tables\Columns\TextColumn::make('category.name')->searchable(),
                 Tables\Columns\TextColumn::make('subCategory.name')->searchable(),
+                Tables\Columns\TextColumn::make('tracking_date')->searchable(),
                 Tables\Columns\TextColumn::make('amount')->searchable(),
                 Tables\Columns\TextColumn::make('notes')->searchable(),
                 Tables\Columns\TextColumn::make('created_at')->searchable(),
 
+            ])
+            ->groups([
+                Group::make('tracking_date')
+                    ->orderQueryUsing(fn (Builder $query, string $direction) => $query->orderBy('tracking_date', $direction)),
             ])
             ->filters([
 
