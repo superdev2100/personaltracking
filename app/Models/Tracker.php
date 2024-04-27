@@ -11,7 +11,7 @@ class Tracker extends Model
     use HasFactory;
 
     protected $fillable = [
-        'category_id', 'sub_category_id', 'main_category_id', 'amount', 'notes', 'created_by',
+        'category_id', 'sub_category_id', 'main_category_id', 'amount', 'notes','tracking_date','created_by',
     ];
 
     protected $casts = [
