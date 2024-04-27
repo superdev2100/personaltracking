@@ -24,6 +24,7 @@ class TrackerResource extends Resource
                 Forms\Components\Select::make('category_id')->nullable()->label('Category')
                 ->native(false)
                 ->searchable()
+                ->required()
                 ->preload()
                 ->relationship('category', 'name')
                 ->createOptionForm([
@@ -33,6 +34,7 @@ class TrackerResource extends Resource
                 Forms\Components\Select::make('sub_category_id')->nullable()
                 ->native(false)
                 ->searchable()
+                ->required()
                 ->preload()
                 ->createOptionForm([
                     Forms\Components\TextInput::make('name')
@@ -43,11 +45,18 @@ class TrackerResource extends Resource
                 ->native(false)
                 ->searchable()
                 ->preload()
+                ->required()
                 ->label('Main category')->relationship('mainCategory', 'name'),
-                Forms\Components\TextInput::make('amount')->numeric()->label('Amount'),
+                Forms\Components\TextInput::make('amount')->numeric()
+                ->required()
+                ->label('Amount'),
                 Forms\Components\TextInput::make('notes')->label('Notes'),
+                Forms\Components\DatePicker::make('tracking_date')->label('Tracking Date')
+                ->required()
+                ->native(false),
                 Forms\Components\Select::make('created_by')->nullable()
                 ->native(false)
+                ->required()
                 ->searchable()
                 ->preload()
                 ->label('Created by')->relationship('createdBy', 'name'),
