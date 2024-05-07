@@ -28,4 +28,11 @@ class ListTrackers extends ListRecords
             'Savings Via Expenses' => Tab::make()->query(fn ($query) => $query->where('main_category_id', '4')),
         ];
     }
+
+    public function setPage($page, $pageName = 'page'): void
+    {
+        parent::setPage($page, $pageName);
+
+        $this->dispatch('scroll-to-top');
+    }
 }
